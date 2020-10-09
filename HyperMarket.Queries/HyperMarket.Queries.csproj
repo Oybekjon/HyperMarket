@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HyperMarket.Core\HyperMarket.Core.csproj" />
+    <ProjectReference Include="..\HyperMarket.Data\HyperMarket.Data.csproj" />
+    <ProjectReference Include="..\HyperMarket.DomainObjects\HyperMarket.DomainObjects.csproj" />
+  </ItemGroup>
+
+</Project>

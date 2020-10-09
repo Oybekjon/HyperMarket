@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HyperMarket.Core\HyperMarket.Core.csproj" />
+    <ProjectReference Include="..\HyperMarket.Data.SqlServer\HyperMarket.Data.SqlServer.csproj" />
+    <ProjectReference Include="..\HyperMarket.Data\HyperMarket.Data.csproj" />
+    <ProjectReference Include="..\HyperMarket.DomainObjects\HyperMarket.DomainObjects.csproj" />
+    <ProjectReference Include="..\HyperMarket.Queries\HyperMarket.Queries.csproj" />
+  </ItemGroup>
+
+</Project>
