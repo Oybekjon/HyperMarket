@@ -4,15 +4,16 @@ namespace HyperMarket.DomainObjects
 {
     public class UserStore
     {
-        private ICollection<UserPermission> _Permissions;
+        private ICollection<UserStorePermission> _UserStorePermissions;
         public long UserId { get; set; }
         public long StoreId { get; set; }
         public User User { get; set; }
         public Store Store { get; set; }
-        public ICollection<UserPermission> Permissions
+
+        public ICollection<UserStorePermission> UserStorePermissions
         {
-            get => _Permissions ??= new List<UserPermission>();
-            set => _Permissions = value;
+            get => _UserStorePermissions ??= new List<UserStorePermission>();
+            set => _UserStorePermissions = value;
         }
     }
 }

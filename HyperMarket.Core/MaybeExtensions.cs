@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Linq;
-namespace HyperMarket {
-    public static class MaybeExtensions {
-        public static TResult With<T, TResult>(this T input, Func<T, TResult> expr) {
+namespace HyperMarket
+{
+    public static class MaybeExtensions
+    {
+        public static TResult With<T, TResult>(this T input, Func<T, TResult> expr)
+        {
             if (input == null)
-                return default(TResult);
+                return default;
             return expr(input);
         }
-        public static TResult Return<T, TResult>(this T input, Func<T, TResult> expr, TResult fallBackValue) {
+        public static TResult Return<T, TResult>(this T input, Func<T, TResult> expr, TResult fallBackValue)
+        {
             if (input == null)
                 return fallBackValue;
             var val = expr(input);
@@ -15,12 +19,14 @@ namespace HyperMarket {
                 return fallBackValue;
             return val;
         }
-        public static T Try<T>(this T input, Action<T> action) {
+        public static T Try<T>(this T input, Action<T> action)
+        {
             if (input != null)
                 action(input);
             return input;
         }
-        public static void TryAs<T>(this Object obj, Action<T> action) where T : class {
+        public static void TryAs<T>(this Object obj, Action<T> action) where T : class
+        {
             Guard.NotNull(action, "action");
             var casted = obj as T;
             if (casted != null)
@@ -34,18 +40,23 @@ namespace HyperMarket {
             return target;
         }
 
-        public static String OrFollowingIfNull(this String value, String alt, params String[] alts) {
+        public static String OrFollowingIfNull(this String value, String alt, params String[] alts)
+        {
             if (!String.IsNullOrWhiteSpace(value))
                 return value;
             if (!String.IsNullOrWhiteSpace(alt))
                 return alt;
             return alts.FirstOrDefault(x => !String.IsNullOrWhiteSpace(x));
         }
-        public static Exception TrySafe<T>(this T obj, Action<T> action) {
+        public static Exception TrySafe<T>(this T obj, Action<T> action)
+        {
             if (obj != null)
-                try {
+                try
+                {
                     action(obj);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     return ex;
                 }
             return null;

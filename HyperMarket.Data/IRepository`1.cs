@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-namespace HyperMarket.Data {
-    public interface IRepository<T> where T : class {
-        IQueryable<T> Where(Expression<Func<T, Boolean>> predicate);
-        T FirstOrDefault(Expression<Func<T, Boolean>> predicate);
-        Int32 Count(Expression<Func<T, Boolean>> predicate);
-        Int32 Count();
-        Int32 CountRaw(String query);
+namespace HyperMarket.Data
+{
+    public interface IRepository<T> where T : class
+    {
+        IQueryable<T> Where(Expression<Func<T, bool>> predicate);
+        IQueryable<T> Include<TNavigationProperty>(Expression<Func<T, TNavigationProperty>> property);
+        T FirstOrDefault(Expression<Func<T, bool>> predicate);
+        int Count(Expression<Func<T, bool>> predicate);
+        int Count();
+        int CountRaw(string query);
         IQueryable<T> GetAll();
         void Store(T value);
-        Int32 SaveChanges();
+        int SaveChanges();
         void Delete(T value);
-        T GetById(Object id);
-        ICollection<T> RawQuery(String query);
+        T GetById(object id);
+        ICollection<T> RawQuery(string query);
     }
 }

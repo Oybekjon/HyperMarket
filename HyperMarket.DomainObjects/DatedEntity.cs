@@ -9,7 +9,7 @@ namespace HyperMarket.DomainObjects
         private DateTime? _DateCreated;
         public DateTime DateCreated
         {
-            get => (_DateCreated = _DateCreated ?? DateTime.UtcNow).Value;
+            get => _DateCreated ??= DateTime.UtcNow;
             set => _DateCreated = value;
         }
     }

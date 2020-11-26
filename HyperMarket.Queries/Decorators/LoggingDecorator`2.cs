@@ -1,7 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HyperMarket.Queries.Decorators
 {

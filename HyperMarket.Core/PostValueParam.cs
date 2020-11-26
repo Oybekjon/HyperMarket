@@ -11,7 +11,7 @@ namespace HyperMarket {
             ParamName = paramName;
             Value = value;
         }
-        Byte[] IMultipartParameter.Value {
+        byte[] IMultipartParameter.Value {
             get { return Value.Return(x => Encoding.UTF8.GetBytes(Value), null); }
         }
         String IMultipartParameter.FileName {

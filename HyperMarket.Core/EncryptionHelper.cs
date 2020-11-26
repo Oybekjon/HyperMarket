@@ -41,7 +41,7 @@ namespace HyperMarket
         {
             return Encryption(input.ToByte(), key, provider).ToBase64();
         }
-        public Byte[] Encryption(Byte[] input, String key, SymmetricEncryptionProvider provider = SymmetricEncryptionProvider.TrippleDes)
+        public byte[] Encryption(byte[] input, String key, SymmetricEncryptionProvider provider = SymmetricEncryptionProvider.TrippleDes)
         {
             var enc = GetAlgorithm(key, provider);
             var cryptoTransform = enc.CreateEncryptor();
@@ -65,7 +65,7 @@ namespace HyperMarket
             return enc;
         }
 
-        public Byte[] Decryption(Byte[] input, String key, SymmetricEncryptionProvider provider = SymmetricEncryptionProvider.TrippleDes)
+        public byte[] Decryption(byte[] input, String key, SymmetricEncryptionProvider provider = SymmetricEncryptionProvider.TrippleDes)
         {
             var enc = GetAlgorithm(key, provider);
             var cryptoTransform = enc.CreateDecryptor();
@@ -114,7 +114,7 @@ namespace HyperMarket
             var md5 = new MD5CryptoServiceProvider();
             var des = new TripleDESCryptoServiceProvider();
             des.Key = md5.ComputeHash(Encoding.Unicode.GetBytes(key));
-            des.IV = new Byte[des.BlockSize / 8];
+            des.IV = new byte[des.BlockSize / 8];
             return des;
         }
         private SymmetricAlgorithm CreateAes256(String key)
@@ -122,7 +122,7 @@ namespace HyperMarket
             var md5 = new MD5CryptoServiceProvider();
             var provider = new AesCryptoServiceProvider();
             provider.Key = md5.ComputeHash(Encoding.Unicode.GetBytes(key));
-            provider.IV = new Byte[provider.BlockSize / 8];
+            provider.IV = new byte[provider.BlockSize / 8];
             return provider;
         }
     }

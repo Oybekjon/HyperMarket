@@ -11,13 +11,11 @@ namespace HyperMarket.Data.SqlServer.Maps
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("User");
-
             builder.Property(t => t.Email)
-                .IsRequired()
                 .HasMaxLength(400);
 
-            builder.HasAlternateKey(t => t.Email);
+            builder.HasIndex(t => t.UserIdentifier)
+                   .IsUnique();
         }
     }
 }

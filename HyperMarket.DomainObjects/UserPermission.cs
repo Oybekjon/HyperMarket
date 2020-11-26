@@ -2,9 +2,8 @@
 {
     public class UserPermission
     {
+        public string Permission { get; set; }
         public long UserId { get; set; }
-        public long PermissionId { get; set; }
         public User User { get; set; }
-        public Permission Permission { get; set; }
     }
 }

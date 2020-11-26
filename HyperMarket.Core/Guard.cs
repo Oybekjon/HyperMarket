@@ -17,11 +17,11 @@ namespace HyperMarket {
             if (String.IsNullOrWhiteSpace(value))
                 throw ErrorHelper.ArgNull(String.Format("Property path {0} cannot be null or empty", propertyPath));
         }
-        public static void IsTrue<T>(Boolean value) where T : Exception, new() {
+        public static void IsTrue<T>(bool value) where T : Exception, new() {
             if (!value)
                 throw new T();
         }
-        public static void IsTrue<T>(Boolean value, T error) where T : Exception {
+        public static void IsTrue<T>(bool value, T error) where T : Exception {
             if (!value)
                 throw error;
         }

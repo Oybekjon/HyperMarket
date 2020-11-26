@@ -8,7 +8,7 @@ namespace HyperMarket {
     public class PostFileInfo : IMultipartParameter {
         public String ContentType { get; private set; }
         public String FileName { get; private set; }
-        public Byte[] Data { get; private set; }
+        public byte[] Data { get; private set; }
         public String ParamName { get; private set; }
         public PostFileInfo(Stream data, String fileName, String paramName, String contentType) {
             Guard.NotNull(data, "data");
@@ -25,7 +25,7 @@ namespace HyperMarket {
                 ContentType = contentType;
         }
         public PostFileInfo(Stream data, String fileName, String paramName) : this(data, fileName, paramName, null) { }
-        public PostFileInfo(Byte[] data, String fileName, String paramName, String contentType) {
+        public PostFileInfo(byte[] data, String fileName, String paramName, String contentType) {
             Guard.NotNull(data, "data");
             Guard.NotNullOrEmpty(fileName, "fileName");
             Guard.NotNullOrEmpty(paramName, "paramName");
@@ -37,14 +37,14 @@ namespace HyperMarket {
             else
                 ContentType = contentType;
         }
-        public PostFileInfo(Byte[] data, String fileName, String paramName) : this(data, fileName, paramName, null) { }
+        public PostFileInfo(byte[] data, String fileName, String paramName) : this(data, fileName, paramName, null) { }
         private void DetectContentType() {
             if (!String.IsNullOrWhiteSpace(FileName)) {
                 var helper = new FileSystemHelper();
                 ContentType = helper.GetContentType(FileName);
             }
         }
-        Byte[] IMultipartParameter.Value {
+        byte[] IMultipartParameter.Value {
             get { return Data; }
         }
     }

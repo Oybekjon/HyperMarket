@@ -760,7 +760,7 @@ namespace HyperMarket {
                 DeleteDirectory(info);
             }
         }
-        public Int64 FileSize(String fileName) {
+        public long FileSize(String fileName) {
             if (!File.Exists(fileName))
                 throw new FileNotFoundException(fileName + " not found");
             var file = new FileInfo(fileName);
@@ -784,7 +784,7 @@ namespace HyperMarket {
             CreateDir(targetFile);
             File.Copy(sourceFile, targetFile);
         }
-        public Boolean EntryExists(String fullPath) {
+        public bool EntryExists(String fullPath) {
             return Directory.Exists(fullPath) || File.Exists(fullPath);
         }
         public void CopyFileOrDir(String source, String target) {

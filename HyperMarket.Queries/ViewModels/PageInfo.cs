@@ -4,27 +4,27 @@ using System.Linq;
 
 namespace HyperMarket.Queries.ViewModels {
     public class PageInfo {
-        private Boolean _NextButton;
-        private Boolean _PreviousButton;
-        private List<Int32> _Pages;
-        private Int32 _CurrentPage;
-        private Int32 _TotalPages;
-        public Boolean NextButton {
+        private bool _NextButton;
+        private bool _PreviousButton;
+        private List<int> _Pages;
+        private int _CurrentPage;
+        private int _TotalPages;
+        public bool NextButton {
             get { return _NextButton; }
         }
-        public Boolean PreviousButton {
+        public bool PreviousButton {
             get { return _PreviousButton; }
         }
-        public List<Int32> Pages {
+        public List<int> Pages {
             get { return _Pages; }
         }
-        public Int32 CurrentPage {
+        public int CurrentPage {
             get { return _CurrentPage; }
         }
-        public Int32 TotalPages {
+        public int TotalPages {
             get { return _TotalPages; }
         }
-        public PageInfo(Int32 currentPage, Int32 totalPages) {
+        public PageInfo(int currentPage, int totalPages) {
             if (totalPages == 0)
                 totalPages = 1;
             _CurrentPage = currentPage;

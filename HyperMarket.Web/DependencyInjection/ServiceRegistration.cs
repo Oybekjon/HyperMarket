@@ -7,6 +7,7 @@ using HyperMarket.Data;
 using HyperMarket.Data.SqlServer;
 using HyperMarket.DomainObjects;
 using Microsoft.EntityFrameworkCore;
+using HyperMarket.Web.ActionHelpers;
 
 namespace HyperMarket.Web.DependencyInjection
 {
@@ -17,6 +18,7 @@ namespace HyperMarket.Web.DependencyInjection
             services.AddDbContext<MainContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<DbContext, MainContext>();
             services.AddScoped<RepositoryContextBase, SqlServerRepositoryContext>();
+            services.AddScoped<AuthenticationHelper>();
         }
     }
 }

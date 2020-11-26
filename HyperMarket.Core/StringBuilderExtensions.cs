@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 namespace HyperMarket {
     public static class StringBuilderExtensions {
-        public static Int32 LastIndexOf(this StringBuilder sb, Char c) {
+        public static int LastIndexOf(this StringBuilder sb, Char c) {
             if (sb == null)
                 throw new NullReferenceException();
             for (var i = sb.Length - 1; i >= 0; i--)
@@ -12,7 +12,7 @@ namespace HyperMarket {
             return -1;
         }
         public static void Shuffle(this StringBuilder sb) {
-            var list = new List<Int32>(sb.Length);
+            var list = new List<int>(sb.Length);
             var rnd = new Random();
             for (var i = 0; i < sb.Length; i++) {
                 var index = rnd.Next(0, list.Count + 1);
@@ -22,7 +22,7 @@ namespace HyperMarket {
             for (var i = 0; i < sb.Length; i++)
                 sb[i] = current[list[i]];
         }
-        public static StringBuilder InsertFormat(this StringBuilder sb, Int32 index, String format, params Object[] args) {
+        public static StringBuilder InsertFormat(this StringBuilder sb, int index, String format, params Object[] args) {
             if (sb == null)
                 throw new NullReferenceException();
             var result = String.Format(format, args);

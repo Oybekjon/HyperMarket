@@ -72,7 +72,7 @@ namespace HyperMarket {
         /// use only one of them.
         /// </para>
         /// </summary>
-        public Byte[] PostBinaryBody { get; set; }
+        public byte[] PostBinaryBody { get; set; }
 
 
         public ICollection<Cookie> Cookies {
@@ -87,13 +87,13 @@ namespace HyperMarket {
         /// If set true, the request will add a X-Requested-With: XMLHttpRequest header
         /// just like any browser maing an Ajax request.
         /// </summary>
-        public Boolean EmulateAjax { get; set; }
+        public bool EmulateAjax { get; set; }
         /// <summary>
         /// If set true, the response will be returned in any status code
         /// including 500 or 404. Default is false, i.e. will throw error on any
         /// status code that does not mean a success.
         /// </summary>
-        public Boolean ProceedOnError { get; set; }
+        public bool ProceedOnError { get; set; }
         public HttpVerb HttpVerb {
             get { return (_HttpVerb = _HttpVerb ?? HttpVerb.Get).Value; }
             set { _HttpVerb = value; }

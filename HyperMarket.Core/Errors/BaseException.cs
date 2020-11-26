@@ -1,12 +1,14 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace HyperMarket.Errors {
+namespace HyperMarket.Errors
+{
     [Serializable]
-    public class BaseException : Exception {
+    public class BaseException : Exception
+    {
         public BaseException() { }
-        public BaseException(String message) : base(message) { }
-        public BaseException(String message, Exception inner) : base(message, inner) { }
+        public BaseException(string message) : base(message) { }
+        public BaseException(string message, Exception inner) : base(message, inner) { }
         protected BaseException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

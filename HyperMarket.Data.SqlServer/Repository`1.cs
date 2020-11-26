@@ -8,32 +8,43 @@ namespace HyperMarket.Data.SqlServer
 {
     internal class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext Context;
+        private readonly DbContext Context;
         public Repository(DbContext context)
         {
             Guard.NotNull(context, "context");
             Context = context;
         }
-        public IQueryable<T> Where(Expression<Func<T, Boolean>> predicate)
+
+        public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
         {
             return Context.Set<T>().Where(predicate);
         }
-        public T FirstOrDefault(Expression<Func<T, Boolean>> predicate)
+
+        public IQueryable<T> Include<TNavigationProperty>(Expression<Func<T, TNavigationProperty>> property)
+        {
+            return Context.Set<T>().Include(property);
+        }
+
+        public T FirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return Context.Set<T>().FirstOrDefault(predicate);
         }
-        public Int32 Count(Expression<Func<T, Boolean>> predicate)
+
+        public int Count(Expression<Func<T, bool>> predicate)
         {
             return Context.Set<T>().Count(predicate);
         }
-        public Int32 Count()
+
+        public int Count()
         {
             return Context.Set<T>().Count();
         }
-        public Int32 CountRaw(String query)
+
+        public int CountRaw(string query)
         {
             throw ErrorHelper.NotSupported();
         }
+
         public IQueryable<T> GetAll()
         {
             return Context.Set<T>();
@@ -45,7 +56,8 @@ namespace HyperMarket.Data.SqlServer
             if (Context.Entry(value).State == EntityState.Detached)
                 Context.Set<T>().Add(value);
         }
-        public Int32 SaveChanges()
+
+        public int SaveChanges()
         {
             return Context.SaveChanges();
         }
@@ -56,10 +68,12 @@ namespace HyperMarket.Data.SqlServer
             if (Context.Entry(value).State != EntityState.Deleted)
                 Context.Set<T>().Remove(value);
         }
-        public T GetById(Object id)
+
+        public T GetById(object id)
         {
             throw ErrorHelper.NotSupported("This operation is not supported in this implementation of the repository");
         }
+
         public ICollection<T> RawQuery(String query)
         {
             throw ErrorHelper.NotSupported();

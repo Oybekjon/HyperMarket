@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace HyperMarket {
     public static class ReflectionExtensions {
-        public static Boolean InheritsOrImplements(this Type child, Type parent) {
+        public static bool InheritsOrImplements(this Type child, Type parent) {
             var par = parent;
             return InheritsOrImplementsHalf(child, ref parent) || par.IsAssignableFrom(child);
         }
 
-        private static Boolean InheritsOrImplementsHalf(Type child, ref Type parent) {
+        private static bool InheritsOrImplementsHalf(Type child, ref Type parent) {
             parent = ResolveGenericTypeDefinition(parent);
             var currentChild = child.IsGenericType
                                    ? child.GetGenericTypeDefinition()
@@ -26,7 +26,7 @@ namespace HyperMarket {
             return false;
         }
 
-        private static Boolean HasAnyInterfaces(Type parent, Type child) {
+        private static bool HasAnyInterfaces(Type parent, Type child) {
             return child.GetInterfaces()
                 .Any(childInterface => {
                     var currentInterface = childInterface.IsGenericType

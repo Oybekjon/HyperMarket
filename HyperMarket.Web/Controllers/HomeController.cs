@@ -16,6 +16,7 @@ namespace HyperMarket.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly QueryManager Manager;
+
         public HomeController(ILogger<HomeController> logger, QueryManager manager)
         {
             _logger = logger;

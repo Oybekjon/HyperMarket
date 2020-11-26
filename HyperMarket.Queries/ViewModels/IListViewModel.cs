@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace HyperMarket.Queries.ViewModels {
     public interface IListViewModel {
         IList Data { get; }
-        PageInfo PageInfo { get; set; }
+        int TotalRecords { get; }
+        int Limit { get; }
+        int Offset { get; }
     }
 }

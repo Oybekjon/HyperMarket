@@ -6,7 +6,7 @@ using System.Text;
 namespace HyperMarket {
     public interface IMultipartParameter {
         String ParamName { get; }
-        Byte[] Value { get; }
+        byte[] Value { get; }
         String FileName { get; }
         String ContentType { get; }
     }

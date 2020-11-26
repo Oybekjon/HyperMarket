@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace HyperMarket {
-    public delegate TSeed AggregatorDelegate<TSeed, T>(Int32 index, TSeed seed, T current);
+    public delegate TSeed AggregatorDelegate<TSeed, T>(int index, TSeed seed, T current);
     public static class EnumerableExtensions {
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
             Guard.NotNull(collection, "collection");
@@ -36,7 +36,7 @@ namespace HyperMarket {
             foreach (var item in values)
                 collection.Add(item);
         }
-        public static void RemoveRange<T>(this ICollection<T> collection, IEnumerable<T> values, Func<T, T, Boolean> comparer) {
+        public static void RemoveRange<T>(this ICollection<T> collection, IEnumerable<T> values, Func<T, T, bool> comparer) {
             foreach (var item in values) {
                 var target = collection.FirstOrDefault(x => values.Any(y => comparer(x, y)));
                 if (target != null)
@@ -48,7 +48,7 @@ namespace HyperMarket {
                 collection.Remove(item);
             }
         }
-        public static void RemoveAll<T>(this ICollection<T> collection, Func<T, Boolean> predicate) {
+        public static void RemoveAll<T>(this ICollection<T> collection, Func<T, bool> predicate) {
             collection.Where(predicate).ToList().Try(x => collection.RemoveRange(x));
         }
         public static void AddIfNotExists<T>(this ICollection<T> collection, T value) {
@@ -59,7 +59,7 @@ namespace HyperMarket {
             if (!collection.Contains(value, comparer))
                 collection.Add(value);
         }
-        public static void AddIfNotExists<T>(this ICollection<T> collection, T value, Func<T, T, Boolean> comparer) {
+        public static void AddIfNotExists<T>(this ICollection<T> collection, T value, Func<T, T, bool> comparer) {
             if (!collection.Any(x => comparer(x, value)))
                 collection.Add(value);
         }
@@ -69,7 +69,7 @@ namespace HyperMarket {
                 return dictionary[key];
             return default(T);
         }
-        public static Int32 Replace<T>(this IList<T> collection, T value, Func<T, T, Boolean> equalityPredicate) {
+        public static int Replace<T>(this IList<T> collection, T value, Func<T, T, bool> equalityPredicate) {
             var totalCount = 0;
             for (var i = 0; i < collection.Count; i++)
                 if (equalityPredicate(collection[i], value)) {
@@ -78,7 +78,7 @@ namespace HyperMarket {
                 }
             return totalCount;
         }
-        public static void RemoveAll<T>(this IList<T> collection, Func<T, Boolean> predicate) {
+        public static void RemoveAll<T>(this IList<T> collection, Func<T, bool> predicate) {
             if (collection == null)
                 throw new NullReferenceException();
             Guard.NotNull(predicate, "predicate");
@@ -89,13 +89,13 @@ namespace HyperMarket {
                 else
                     i++;
         }
-        public static void AddOrReplace<T>(this IList<T> collection, T value, Func<T, T, Boolean> equalityPredicate) {
+        public static void AddOrReplace<T>(this IList<T> collection, T value, Func<T, T, bool> equalityPredicate) {
             if (!collection.Any(x => equalityPredicate(x, value)))
                 collection.Add(value);
             else
                 collection.Replace(value, equalityPredicate);
         }
-        public static List<T> Distinct<T>(this IEnumerable<T> collection, Func<T, T, Boolean> comparer) {
+        public static List<T> Distinct<T>(this IEnumerable<T> collection, Func<T, T, bool> comparer) {
             var list = new List<T>();
             foreach (var item in collection)
                 if (!list.Any(x => comparer(x, item)))
@@ -107,7 +107,7 @@ namespace HyperMarket {
                 collection.Add(item);
         }
 
-        public static Boolean AllIsTrue(this IEnumerable<Boolean> collection) {
+        public static bool AllIsTrue(this IEnumerable<bool> collection) {
             return !collection.Any(x => !x);
         }
         public static void AddAllTo<T>(this IEnumerable<T> source, ICollection<T> container) {
@@ -116,7 +116,7 @@ namespace HyperMarket {
             Guard.NotNull(container, "container");
             container.AddRange(source);
         }
-        public static ICollection<T> Except<T, TSecond>(this IEnumerable<T> minuend, IEnumerable<TSecond> subtrahend, Func<T, TSecond, Boolean> comparer) {
+        public static ICollection<T> Except<T, TSecond>(this IEnumerable<T> minuend, IEnumerable<TSecond> subtrahend, Func<T, TSecond, bool> comparer) {
             return minuend.Where(x => !subtrahend.Any(y => comparer(x, y))).ToList();
         }
         public static T TryGetValue<T, TKey>(this ConcurrentDictionary<TKey, T> dictionary, TKey key) {

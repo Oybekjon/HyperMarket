@@ -9,13 +9,13 @@ namespace HyperMarket {
         public static Double ToMilliseconds(this DateTimeOffset date) {
             return (date - UnixEpoch).TotalMilliseconds;
         }
-        public static DateTime FromUnixTime(this Int64 unixTime) {
+        public static DateTime FromUnixTime(this long unixTime) {
             return UnixEpoch.AddSeconds(unixTime);
         }
-        public static Int64 ToUnixTime(this DateTime date) {
+        public static long ToUnixTime(this DateTime date) {
             return Convert.ToInt64((date - UnixEpoch).TotalSeconds);
         }
-        public static Int64 ToUnixTime(this DateTimeOffset date) {
+        public static long ToUnixTime(this DateTimeOffset date) {
             return Convert.ToInt64((date - UnixEpoch).TotalSeconds);
         }
         public static String ToVerbose(this DateTime date, IFormatProvider info = null) {
@@ -25,8 +25,8 @@ namespace HyperMarket {
         public static String ToIsoString(this DateTime date) {
             return date.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", CultureInfo.InvariantCulture);
         }
-        public static DateTime GetClosestDayOfWeek(this DateTime @this, DayOfWeek dayOfWeek, Int32 hour, Int32 minute, Int32 second) {
-            var daysToAdd = (Int32)dayOfWeek - (Int32)@this.DayOfWeek;
+        public static DateTime GetClosestDayOfWeek(this DateTime @this, DayOfWeek dayOfWeek, int hour, int minute, int second) {
+            var daysToAdd = (int)dayOfWeek - (int)@this.DayOfWeek;
             if (daysToAdd < 0)
                 daysToAdd += 7;
             var dt = new DateTime(@this.Year, @this.Month, @this.Day, hour, minute, second, @this.Kind);
@@ -39,10 +39,10 @@ namespace HyperMarket {
         public static DateTime GetDay(this DateTime @this) {
             return new DateTime(@this.Year, @this.Month, @this.Day, 0, 0, 0, @this.Kind);
         }
-        public static Boolean IsLeapYear(this DateTime date) {
+        public static bool IsLeapYear(this DateTime date) {
             return date.Year.IsLeapYear();
         }
-        private static Boolean IsLeapYear(this Int32 year) {
+        private static bool IsLeapYear(this int year) {
             return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
         }
     }

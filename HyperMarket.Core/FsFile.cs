@@ -9,7 +9,7 @@ namespace HyperMarket {
         public virtual Stream InMemoryStream {
             get { return new MemoryStream(File.ReadAllBytes(FullFileName)); }
         }
-        public virtual Byte[] Bytes {
+        public virtual byte[] Bytes {
             get { return File.ReadAllBytes(FullFileName); }
         }
         public virtual String FullFilePath {
